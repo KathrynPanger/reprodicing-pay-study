@@ -130,7 +130,27 @@ recode occ10true 9800/9830=0
 *Note that these codes are based on the coder's (my) 
 *personal discretion guided as closely as possible by my interpretation
 *of the 1980 census codes. This may be substantively problematic until 
-*my version receives review and revision*
+*my version receives review and revision. In fact, we can expect that
+*these codes will NOT be substantively relevant BECAUSE they are are
+*inherently based on an outdated classification system. More research
+*is needed to produce a rigorous analysis here, but we will continue
+*for now*
+
+gen occ10truncate=occ10true
+*Managerial and professsional specialty positions*
+recode occ10truncate 1/3 5 8/9 = 1
+*Technical, Sales, and Administrative Support Occupations
+recode occ10truncate 4/7 10/12 16/17 = 2
+*Service Occupations*
+recode occ10truncate 13/15=3
+*Farm Fish and Forest*
+recode occ10truncate 18=4
+*Precision, Production, Craft, and Repair*
+recode occ10truncate 19/21=5
+*Operators, Fabricators, Laborers*
+recode occ10truncate 22=6
+*note that military is still coded 0*
+
 
 
 *****CONTROL VARIABLES****
